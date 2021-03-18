@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-1
+spec:
+  capacity:
+    storage: 10Gi
+  acessModes:
+    - ReadWriteOnde # apenas um pod pode escrever e ler por vez
+  gcePersistentDisk:
+    pdName: my-data-disk
+  storageClassName: standard
