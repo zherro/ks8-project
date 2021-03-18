@@ -23,6 +23,20 @@ spec:
               mountPath: /var/www/html/uploads
             - name: sessao
               mountPath: /tmp
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
+            periodSeconds: 15
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            periodSeconds: 10
+            failureThreshold: 3
+            initialDelaySeconds: 20
       volumes:
         - name: images
           persistentVolumeClaim:
